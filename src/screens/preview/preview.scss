@@ -1,0 +1,289 @@
+.landing {
+  &--screen {
+    display: flex;
+    justify-content: space-around;
+    height: 400px;
+    background-image: url(../../images/preview/bg-header.jpg);
+
+    &-img {
+      align-self: center;
+    }
+
+    &-wrapper {
+      align-self: center;
+
+      &-title {
+        font-size: 0;
+        background-image: url(../../images/preview/piskel.gif);
+        background-repeat: no-repeat;
+        height: 130px;
+      }
+
+      &-text {
+        font-size: 22px;
+        font-weight: bold;
+        color: white;
+      }
+
+      &-btn {
+        text-decoration: none;
+        color: black;
+        background-color: goldenrod;
+        font-size: 26px;
+        font-weight: bold;
+        border: 0;
+        width: 250px;
+        height: 50px;
+        box-shadow: 1px 1px 1px white, 1px -1px 1px white, -1px 1px 1px white, -1px -1px 1px white;
+        text-shadow: 1px 1px 1px white, 1px -1px 1px white, -1px 1px 1px white, -1px -1px 1px white;
+        transition: all 0.4s;
+        outline: 0;
+        cursor: pointer;
+      }
+      &-btn:hover {
+        background-color: white;
+        text-shadow: 1px 1px 1px gold, 1px -1px 1px gold, -1px 1px 1px gold, -1px -1px 1px gold;
+      }
+    }
+  }
+
+  &--bg_beetwen {
+    background-image: url(../../images/preview/bg-dot.png);
+    width: 100%;
+    height: 40px;
+  }
+
+  &--expamples {
+    background-image: url(../../images/preview/bg-example.jpg);
+    height: 460px;
+
+    &-title {
+      font-size: 46px;
+      font-weight: bold;
+      color: goldenrod;
+      margin: 0;
+      text-align: center;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      text-shadow: 2px 2px 2px white, -2px 2px 2px white, 2px -2px 2px white, -2px -2px 2px white;
+    }
+
+    &-img {
+      display: flex;
+      justify-content: space-around;
+
+      img {
+        border: 2px solid grey;
+      }
+      :nth-child(2) {
+        border: 0;
+      }
+    }
+  }
+
+  &--functionality {
+    background-image: url(../../images/preview/bg-tools.png);
+    height: 770px;
+
+    &-title {
+      font-size: 46px;
+      font-weight: bold;
+      color: black;
+      margin: 0;
+      text-align: center;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      text-shadow: 2px 2px 2px white, -2px 2px 2px white, 2px -2px 2px white, -2px -2px 2px white;
+    }
+
+    &-tools {
+      &-row {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+    }
+
+    img {
+      border: 2px solid grey;
+    }
+  }
+
+  &--about {
+    height: 340px;
+    background-image: url(../../images/preview/bg-footer.png);
+
+    &-title {
+      font-size: 42px;
+      font-weight: bold;
+      color: white;
+      margin: 0;
+      text-align: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    &-info {
+      display: flex;
+      justify-content: center;
+
+      &-photo {
+        margin-right: 250px;
+      }
+
+      &-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+      }
+
+      &-name {
+        font-size: 34px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        margin: 0;
+      }
+
+      &-references {
+        color: white;
+        font-size: 22px;
+        display: flex;
+
+        &-icon {
+          background-color: white;
+        }
+
+        &-link,
+        &-label {
+          color: white;
+          align-self: center;
+       }
+
+       &-label {
+         margin-left: 15px;
+         margin-right: 15px;
+       }
+      }
+    }
+  }
+}
+
+.shortcuts {
+  display: none;
+  position: absolute;
+  width: 80%;
+  height: 85%;
+  top: 0;
+  left: 0;
+  margin-left: 10%;
+  margin-top: 50px;
+  background-color: rgba(0, 0, 0, 0.95);
+  border: 10px solid goldenrod;
+
+  &--title {
+    color: white;
+    text-align: center;
+  }
+
+  &--wrapper {
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &-item {
+      display: flex;
+      margin-top: 10px;
+
+      &-iconPen,
+      &-iconPicker,
+      &-iconBucket,
+      &-iconSwaper,
+      &-iconEraser,
+      &-iconLine,
+      &-iconClear,
+      &-iconBW,
+      &-iconColorL,
+      &-iconColorR {
+        width: 30px;
+        height: 30px;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: goldenrod;
+      }
+
+      &-iconPen {
+        background-image: url(../../images/icon/pen.png);
+      }
+      &-iconPicker {
+        background-image: url(../../images/icon/picker.png);
+      }
+      &-iconBucket {
+        background-image: url(../../images/icon/bucket.png);
+      }
+      &-iconSwaper {
+        background-image: url(../../images/icon/color-swap.png);
+      }
+      &-iconEraser {
+        background-image: url(../../images/icon/eraser.png);
+      }
+      &-iconLine {
+        background-image: url(../../images/icon/line.png);
+      }
+      &-iconClear {
+        background-image: url(../../images/icon/clear.png);
+      }
+      &-iconBW {
+        background-image: url(../../images/icon/bw.png);
+      }
+      &-iconColorL {
+        background-image: url(../../images/icon/colorL.png);
+      }
+      &-iconColorR {
+        background-image: url(../../images/icon/colorR.png);
+      }
+
+      &-btn {
+        margin-left: 5px;
+        margin-right: 5px;
+        outline: 0;
+        width: 100px;
+        height: 30px;
+        font-weight: bold;
+        border: 3px solid goldenrod;
+      }
+
+      &-btn:hover {
+        box-shadow: 2px 2px 2px white;
+      }
+
+      &-label {
+        align-self: center;
+      }
+    }
+  }
+
+  &--buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      width: 150px;
+      height: 35px;
+      outline: 0;
+      border: 3px solid goldenrod;
+      font-weight: bold;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    button:hover {
+      border: 3px solid crimson;
+    }
+  }
+}

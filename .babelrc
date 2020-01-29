@@ -1,0 +1,4 @@
+{
+   "presets": [ "env" ] // for app
+   //"presets": ["@babel/preset-env"] // for tests
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="152314375148-e4tm3l76jpfvdto70b59e0hkebdie4j0.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="shortcut icon" href="/src/images/icon/logo2.png" type="image/png">
+    <script src="signIn.js"></script>
+    <title>Siple Piskel Clone</title>
+
+</head>
+
+<body class="body">
+    <header class="header">
+        <h1 class="header--title">PISKEL</h1>
+        <div class="header--control">
+            <div class="header--control-name" id="createSprite" class="header--control-create">Guest</div>
+            <img id="imgUser" class="header--control-img" src="" width="40" height="40" alt="">
+            <a id="signIn" class="header--control-sign_in g-signin2" data-onsuccess="onSignIn"></a>
+            <a id="signOut" class="header--control-sign_out">Sign out</a>
+        </div>
+    </header>
+    <main id="main" class="main">
+        <aside class="main--aside">
+            <section class="main--aside-tools">
+                <h2 class="main--aside-tools-title">Tools</h2>
+                <div class="main--aside-tools-counter">
+                    <div id="minus" class="main--aside-tools-counter-minus" data-tooltip="Minus (-)"></div>
+                    <div id="plus"  class="main--aside-tools-counter-plus" data-tooltip="Plus (=)"></div>
+                    <div id="count" class="main--aside-tools-counter-count">1</div>
+                </div>
+                <div class="main--aside-tools-thickness">
+                    <div id="penSize1" class="main--aside-tools-thickness-size1" data-tooltip="Pen size (1)"></div>
+                    <div id="penSize2" class="main--aside-tools-thickness-size2" data-tooltip="Pen size (2)"></div>
+                    <div id="penSize3" class="main--aside-tools-thickness-size3" data-tooltip="Pen size (3)"></div>
+                    <div id="penSize4" class="main--aside-tools-thickness-size4" data-tooltip="Pen size (4)"></div>
+                </div>
+                <div class="main--aside-tools-actions">
+                    <div id="pencil" class="main--aside-tools-actions-pencil" data-tooltip="Pencil (P)"></div>
+                    <div id="chooseColor" class="main--aside-tools-actions-chooseColor" data-tooltip="Picker (I)"></div>
+                    <div id="bucket" class="main--aside-tools-actions-bucket" data-tooltip="Bucket (B)"></div>
+                    <div id="colorSwap" class="main--aside-tools-actions-color_swap" data-tooltip="Color swapper (S)"></div>
+                    <div id="eraser" class="main--aside-tools-actions-eraser" data-tooltip="Eraser (E)"></div>
+                    <div id="line" class="main--aside-tools-actions-line" data-tooltip="Line (L)"></div>
+                    <div id="clear" class="main--aside-tools-actions-clear" data-tooltip="Clear (BACKSPACE)"></div>
+                    <div id="bw" class="main--aside-tools-actions-bw" data-tooltip="B&W (W)"></div>
+                </div>
+                <div class="main--aside-tools-color">
+                    <div id="colorLeft" class="main--aside-tools-color-left" data-tooltip="Color Left (C)">
+                        <input type="color" id="changeColorLeft" class="main--aside-tools-color-left-input">
+                    </div>
+                    <div id="colorRight" class="main--aside-tools-color-right" data-tooltip="Color Right (R)">
+                        <input type="color" id="changeColorRight" class="main--aside-tools-color-right-input">
+                    </div>
+                </div>
+                <div id="key" class="main--aside-tools-key" data-tooltip="Keyboard (K)"></div>
+            </section>
+            <section id="framesSection" class="main--aside-frames">
+                <h2 class="main--aside-frames-title">Frames</h2>
+                <ul id="frames" class="main--aside-frames-wrap">
+                    <li id="frm_1" class="main--aside-frames-wrap-item selected">
+                        <canvas id="frmCanvas_1" class="main--aside-frames-wrap-item-canvas" width="128" height="128"></canvas>
+                        <button id="frmNumber_1" class="main--aside-frames-wrap-item-toggle">1</button>
+                        <button id="frmDelete_1" class="main--aside-frames-wrap-item-delete" title="Delete this frame""></button>
+                        <button id="frmDuplicate_1" class="main--aside-frames-wrap-item-duplicate" title="Duplicate this frame"></button>
+                        <div id="frmDD_1" class="main--aside-frames-wrap-item-dd"></div>
+                    </li>
+                </ul>
+                <div id="addFrame" class="main--aside-frames-add">
+                    <span>Add new</span>
+                    <span>Frame</span>
+                </div>
+            </section>
+        </aside>
+        <figure class="main--canvas">
+            <canvas id="mainCanvas" class="main--canvas-screen" width="128" height="128"></canvas>
+        </figure>
+        <div class="main--toolbox">
+            <figure class="main--toolbox-wrap">
+                <canvas id="asideCanvas" class="main--toolbox-wrap-canvas" width="128" height="128"></canvas>
+                <button id="fullScreen" class="main--toolbox-wrap-full_screen"></button>
+            </figure>
+            <div class="main--toolbox-fps">
+                <span id="fps">0</span>
+                <span> FPS</span>
+                <input id="range" class="main--toolbox-fps-range" type="range" min="0" max="24" value="0">
+            </div>
+            <div class="main--toolbox-change_size">
+                <h2>Change Size</h2>
+                <div class="main--toolbox-change_size-wrapper">
+                    <div>
+                        <div>
+                            <input type="radio" name="radio1" id="r_first" class="main--toolbox-change_size-r_item" value="32" checked>
+                            <label for="r_first" class="main--toolbox-change_size-l_item">32x32</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio1" id="r_second" class="main--toolbox-change_size-r_item" value="64">
+                            <label for="r_second" class="main--toolbox-change_size-l_item">64x64</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio1" id="r_third" class="main--toolbox-change_size-r_item" value="128">
+                            <label for="r_third" class="main--toolbox-change_size-l_item">128x128</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <input type="radio" name="radio2" id="r_original" class="main--toolbox-change_size-r_item" checked>
+                            <label for="r_original" class="main--toolbox-change_size-l_item">original</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio2" id="r_cover" class="main--toolbox-change_size-r_item">
+                            <label for="r_cover" class="main--toolbox-change_size-l_item">cover</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main--toolbox-files">
+                <div>
+                    <input type="file" id="open" class="main--toolbox-files-input">
+                    <label for="open" class="main--toolbox-files-label">Open</label>
+                </div>
+                <button id="downloadApng" class="main--toolbox-files-btn" data-tooltip="Download .apng (M)">Download .apng</button>
+                <button id="downloadGif" class="main--toolbox-files-btn" data-tooltip="Download .gif (G)">Download .gif</button>
+            </div>
+        </div>
+    </main>
+    <div id="landing" class="landing">
+        <section class="landing--screen">
+            <div class="landing--screen-wrapper">
+                <h2 class="landing--screen-wrapper-title">PISKEL CLONE</h2>
+                <p class="landing--screen-wrapper-text">It is a clone of the free online editor Piskel for animated sprites & pixel art</p>
+                <button id="landingBtnCreateSprite" class="landing--screen-wrapper-btn">Create Sprite</button>
+            </div>
+            <div class="landing--screen-img">
+                <img src="../../images/preview/screen.png" width="700" height="331" alt="">
+            </div>
+        </section>
+        <div class="landing--bg_beetwen"></div>
+        <section class="landing--expamples">
+            <h2 class="landing--expamples-title">Examples</h2>
+            <div class="landing--expamples-img">
+                <img src="../../images/preview/example1.gif" width="300" height="300" alt="">
+                <img src="../../images/preview/example3.gif" width="300" height="300" alt="">
+                <img src="../../images/preview/example2.gif" width="300" height="300" alt="">
+                <img src="../../images/preview/example4.gif" width="300" height="300" alt="">
+            </div>
+        </section>
+        <div class="landing--bg_beetwen"></div>
+        <section class="landing--functionality">
+            <h2 class="landing--functionality-title">Implemented functionality</h2>
+            <div class="landing--functionality-tools">
+                <div class="landing--functionality-tools-row">
+                    <img src="../../images/preview/tools.png" width="300" height="300" alt="">
+                    <img src="../../images/preview/frames.png" width="300" height="300" alt="">
+                    <img src="../../images/preview/color.png" width="300" height="300" alt="">
+                    <img src="../../images/preview/size.png" width="300" height="300" alt="">
+                </div>
+                <div class="landing--functionality-tools-row">
+                    <img src="../../images/preview/shortcuts.png" width="300" height="300" alt="">
+                    <img src="../../images/preview/animate.png" width="300" height="300" alt="">
+                    <img src="../../images/preview/export.png" width="300" height="300" alt="">
+                    <img src="../../images/preview/oAuth.png" width="300" height="300" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="landing--about">
+            <h2 class="landing--about-title">About</h2>
+            <div class="landing--about-info">
+                <img class="landing--about-info-photo" src="../../images/preview/photo.jpg" width="200" height="200" alt="">
+                <div>
+                    <h3 class="landing--about-info-name">Iukou Siarhei</h3>
+                    <p class="landing--about-info-text">Hello World!</p>
+                    <div class="landing--about-info-references">
+                        <img class="landing--about-info-references-icon" src="../../images/preview/logo-github.png" width="50" height="50" alt="">
+                        <label class="landing--about-info-references-label">My GitHub:</label>
+                        <a href="https://github.com/BlazarQSO" class="landing--about-info-references-link">github.com/BlazarQSO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section id="shortcuts" class="shortcuts">
+        <h2 class="shortcuts--title">Keyboard shortcuts</h2>
+        <div class="shortcuts--wrapper">
+            <div>
+                <h3 class="shortcuts--wrapper-title">Tool shortcuts</h3>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconPen"></div>
+                    <button id="shortcut_pencil" class="shortcuts--wrapper-item-btn">P</button>
+                    <label class="shortcuts--wrapper-item-label">Pen tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconPicker"></div>
+                    <button id ="shortcut_chooseColor" class="shortcuts--wrapper-item-btn">I</button>
+                    <label class="shortcuts--wrapper-item-label">Picker tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconBucket"></div>
+                    <button id="shortcut_bucket" class="shortcuts--wrapper-item-btn">B</button>
+                    <label class="shortcuts--wrapper-item-label">Bucket tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconSwaper"></div>
+                    <button id="shortcut_colorSwap" class="shortcuts--wrapper-item-btn">S</button>
+                    <label class="shortcuts--wrapper-item-label">Swaper tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconEraser"></div>
+                    <button id="shortcut_eraser" class="shortcuts--wrapper-item-btn">E</button>
+                    <label class="shortcuts--wrapper-item-label">Eraser tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconLine"></div>
+                    <button id="shortcut_line" class="shortcuts--wrapper-item-btn">L</button>
+                    <label class="shortcuts--wrapper-item-label">Line tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconClear"></div>
+                    <button id="shortcut_clear" class="shortcuts--wrapper-item-btn">BACKSPACE</button>
+                    <label class="shortcuts--wrapper-item-label">Clear tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconBW"></div>
+                    <button id="shortcut_bw" class="shortcuts--wrapper-item-btn">W</button>
+                    <label class="shortcuts--wrapper-item-label">B&W tool</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconColorL"></div>
+                    <button id="shortcut_colorLeft" class="shortcuts--wrapper-item-btn">C</button>
+                    <label class="shortcuts--wrapper-item-label">Color left</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <div class="shortcuts--wrapper-item-iconColorR"></div>
+                    <button id="shortcut_colorRight" class="shortcuts--wrapper-item-btn">R</button>
+                    <label class="shortcuts--wrapper-item-label">Color right</label>
+                </div>
+            </div>
+            <div>
+                <h3 class="shortcuts--wrapper-title">Frame shortcuts</h3>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_addFrame" class="shortcuts--wrapper-item-btn">N</button>
+                    <label class="shortcuts--wrapper-item-label">Add new frame</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_frmDuplicateNaN" class="shortcuts--wrapper-item-btn">D</button>
+                    <label class="shortcuts--wrapper-item-label">Duplicate selected frame</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_framesNaN_U" class="shortcuts--wrapper-item-btn">&#8593;</button>
+                    <label class="shortcuts--wrapper-item-label">Select previous frame</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_framesNaN_D" class="shortcuts--wrapper-item-btn">&#8595;</button>
+                    <label class="shortcuts--wrapper-item-label">Select next frame</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_frmDeleteNaN" class="shortcuts--wrapper-item-btn">DELETE</button>
+                    <label class="shortcuts--wrapper-item-label">Delete selected frame</label>
+                </div>
+            </div>
+            <div>
+                <h3 class="shortcuts--wrapper-title">Tools Box shortcuts</h3>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_rangeNaN_L" class="shortcuts--wrapper-item-btn">&#8594;</button>
+                    <label class="shortcuts--wrapper-item-label">Increase FPS</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_rangeNaN_R" class="shortcuts--wrapper-item-btn">&#8592;</button>
+                    <label class="shortcuts--wrapper-item-label">Decrease FPS</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_fullScreen" class="shortcuts--wrapper-item-btn">U</button>
+                    <label class="shortcuts--wrapper-item-label">Popup</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_downloadGif" class="shortcuts--wrapper-item-btn">G</button>
+                    <label class="shortcuts--wrapper-item-label">Download .gif</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_downloadApng" class="shortcuts--wrapper-item-btn">M</button>
+                    <label class="shortcuts--wrapper-item-label">Download .apng</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_r_first" class="shortcuts--wrapper-item-btn">5</button>
+                    <label class="shortcuts--wrapper-item-label">Size canvas 32x32</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_r_second" class="shortcuts--wrapper-item-btn">6</button>
+                    <label class="shortcuts--wrapper-item-label">Size canvas 64x64</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_r_third" class="shortcuts--wrapper-item-btn">7</button>
+                    <label class="shortcuts--wrapper-item-label">Size canvas 128x128</label>
+                </div>
+            </div>
+            <div>
+                <h3 class="shortcuts--wrapper-title">Misc shortcuts</h3>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_plus" class="shortcuts--wrapper-item-btn">=</button>
+                    <label class="shortcuts--wrapper-item-label">Increase pen size</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_minus" class="shortcuts--wrapper-item-btn">-</button>
+                    <label class="shortcuts--wrapper-item-label">Decrease pen size</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_key" class="shortcuts--wrapper-item-btn">K</button>
+                    <label class="shortcuts--wrapper-item-label">Keyboard shortcuts</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_signOut" class="shortcuts--wrapper-item-btn">X</button>
+                    <label class="shortcuts--wrapper-item-label">Sign Out</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_penSize1" class="shortcuts--wrapper-item-btn">1</button>
+                    <label class="shortcuts--wrapper-item-label">Size pen 1</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_penSize2" class="shortcuts--wrapper-item-btn">2</button>
+                    <label class="shortcuts--wrapper-item-label">Size pen 2</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_penSize3" class="shortcuts--wrapper-item-btn">3</button>
+                    <label class="shortcuts--wrapper-item-label">Size pen 3</label>
+                </div>
+                <div class="shortcuts--wrapper-item">
+                    <button id="shortcut_penSize4" class="shortcuts--wrapper-item-btn">4</button>
+                    <label class="shortcuts--wrapper-item-label">Size pen 4</label>
+                </div>
+            </div>
+        </div>
+        <div class="shortcuts--buttons">
+            <button id="closeShortcuts">OK</button>
+            <button id="defaultShortcuts">Default</button>
+        </div>
+    </section>
+</body>
+
+</html>

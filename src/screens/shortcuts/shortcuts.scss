@@ -1,0 +1,117 @@
+.shortcuts {
+  display: none;
+  position: absolute;
+  width: 80%;
+  height: 85%;
+  top: 0;
+  left: 0;
+  margin-left: 10%;
+  margin-top: 50px;
+  background-color: rgba(0, 0, 0, 0.95);
+  border: 10px solid goldenrod;
+
+  &--title {
+    color: white;
+    text-align: center;
+  }
+
+  &--wrapper {
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &-item {
+      display: flex;
+      margin-top: 10px;
+
+      &-iconPen,
+      &-iconPicker,
+      &-iconBucket,
+      &-iconSwaper,
+      &-iconEraser,
+      &-iconLine,
+      &-iconClear,
+      &-iconBW,
+      &-iconColorL,
+      &-iconColorR {
+        width: 30px;
+        height: 30px;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: goldenrod;
+      }
+
+      &-iconPen {
+        background-image: url(../../images/icon/pen.png);
+      }
+      &-iconPicker {
+        background-image: url(../../images/icon/picker.png);
+      }
+      &-iconBucket {
+        background-image: url(../../images/icon/bucket.png);
+      }
+      &-iconSwaper {
+        background-image: url(../../images/icon/color-swap.png);
+      }
+      &-iconEraser {
+        background-image: url(../../images/icon/eraser.png);
+      }
+      &-iconLine {
+        background-image: url(../../images/icon/line.png);
+      }
+      &-iconClear {
+        background-image: url(../../images/icon/clear.png);
+      }
+      &-iconBW {
+        background-image: url(../../images/icon/bw.png);
+      }
+      &-iconColorL {
+        background-image: url(../../images/icon/colorL.png);
+      }
+      &-iconColorR {
+        background-image: url(../../images/icon/colorR.png);
+      }
+
+      &-btn {
+        margin-left: 5px;
+        margin-right: 5px;
+        outline: 0;
+        width: 100px;
+        height: 30px;
+        font-weight: bold;
+        border: 3px solid goldenrod;
+      }
+
+      &-btn:hover {
+        box-shadow: 2px 2px 2px white;
+      }
+
+      &-label {
+        align-self: center;
+      }
+    }
+  }
+
+  &--buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      width: 150px;
+      height: 35px;
+      outline: 0;
+      border: 3px solid goldenrod;
+      font-weight: bold;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    button:hover {
+      border: 3px solid crimson;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "simple-piskel-clone",
+  "version": "1.0.0",
+  "description": "simple-piskel-clone",
+  "main": "bundle.js",
+  "scripts": {
+    "buildpost": "node_modules/.bin/webpack --progress",
+    "start": "node_modules/.bin/webpack-dev-server --history-api-fallback --inline --progress",
+    "clear": "del-cli dist",
+    "build": "npm run clear -s && npm run buildpost -s",
+    "test": "jest",
+    "coverage:full": "jest --coverage --coverage-reporters=lcov",
+    "cover": "jest -- --coverage",
+    "test:lint": "npm run lint && mocha",
+    "test:fix": "npm run lint:fix && mocha",
+    "lint": "node node_modules/eslint/bin/eslint.js ./src",
+    "lint:fix": "node node_modules/eslint/bin/eslint.js --fix ./src"
+  },
+  "jest": {
+    "setupFiles": [
+      "./__mocks__/client.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!webpack.config.js",
+      "!simple-piskel-clone/**",
+      "!**/simple-piskel-clone/**",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/coverage/**",
+      "!**/dist/**",
+      "!**/test/**",
+      "!**/extensions/**",
+      "!**/src/components/toolsBox/library/**"
+    ],
+    "coverageReporters": [
+      "html"
+    ]
+  },
+  "author": "Sergey Ivkov",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.7",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "8",
+    "babel-loader": "7",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "copy-webpack-plugin": "^5.0.5",
+    "css-loader": "^3.2.0",
+    "del-cli": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^4.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "jest": "^24.9.0",
+    "jsdom": "^15.2.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "mocha": "^6.2.2",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  }
+}
